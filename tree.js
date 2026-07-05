@@ -54,6 +54,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
       viewer.innerHTML = content;
+
+      // gør "+"-cellen klikbar, hvis der findes en ny tabel at bytte til
+      var expandBtn = viewer.querySelector(".expand-plus");
+      if (expandBtn && this.dataset.content2) {
+        var nextContent = this.dataset.content2.replace(/\\n/g, "<br>");
+        expandBtn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          var table = viewer.querySelector("table");
+          if (table) {
+            table.outerHTML = nextContent;
+          }
+        });
+      }
     });
   }
 });
