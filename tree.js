@@ -55,17 +55,46 @@ document.addEventListener("DOMContentLoaded", function() {
 
       viewer.innerHTML = content;
 
-      // gør "+"-cellen klikbar, hvis der findes en ny tabel at bytte til
-      var expandBtn = viewer.querySelector(".expand-plus");
-      if (expandBtn && this.dataset.content2) {
-        var nextContent = this.dataset.content2.replace(/\\n/g, "<br>");
-        expandBtn.addEventListener("click", function(e) {
-          e.stopPropagation();
+      // gør "+" og "-" klikbare, så man kan skifte frem og tilbage mellem de to tabeller
+      if (this.dataset.content2) {
+        var table1Html = formattedText;
+        var table2Html = this.dataset.content2.replace(/\\n/g, "<br>");
+
+        var showTable2 = function() {
           var table = viewer.querySelector("table");
           if (table) {
-            table.outerHTML = nextContent;
+            table.outerHTML = table2Html;
           }
-        });
+          var minusBtn = viewer.querySelector(".collapse-minus");
+          if (minusBtn) {
+            minusBtn.addEventListener("click", function(e) {
+              e.stopPropagation();
+              showTable1();
+            });
+          }
+        };
+
+        var showTable1 = function() {
+          var table = viewer.querySelector("table");
+          if (table) {
+            table.outerHTML = table1Html;
+          }
+          var plusBtn = viewer.querySelector(".expand-plus");
+          if (plusBtn) {
+            plusBtn.addEventListener("click", function(e) {
+              e.stopPropagation();
+              showTable2();
+            });
+          }
+        };
+
+        var expandBtn = viewer.querySelector(".expand-plus");
+        if (expandBtn) {
+          expandBtn.addEventListener("click", function(e) {
+            e.stopPropagation();
+            showTable2();
+          });
+        }
       }
     });
   }
