@@ -79,3 +79,19 @@ h2 {
   max-width: 100%;
   margin-top: 1em;
 }
+
+.viewer table {
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+
+.viewer table th,
+.viewer table td {
+  border: 1px solid #000000;
+  padding: 0.4em 0.8em;
+}
+
+.viewer table th,
+.viewer table td:first-child {
+  font-weight: bold;
+}
