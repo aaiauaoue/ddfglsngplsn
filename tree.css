@@ -95,3 +95,33 @@ h2 {
 .viewer table tr:first-child th:first-child {
   font-weight: bold;
 }
+
+.image-link {
+  color: #0066cc;
+  text-decoration: underline;
+  cursor: pointer;
+  position: relative;
+}
+
+.image-preview {
+  display: none;
+  position: absolute;
+  background: white;
+  border: 2px solid #000000;
+  padding: 5px;
+  z-index: 1000;
+  width: 300px;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.image-link:hover .image-preview {
+  display: block;
+}
+
+.image-preview img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
