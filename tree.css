@@ -79,3 +79,69 @@ h2 {
   max-width: 100%;
   margin-top: 1em;
 }
+
+.viewer table {
+  border-collapse: separate;
+  margin-top: 1em;
+  border-spacing: 0.3cm 0.3em;
+}
+
+.viewer table th,
+.viewer table td {
+  border: 0.1px solid #000000;
+  padding: 0.4em 0.8em;
+  font-weight: normal;
+}
+
+.viewer table tr:is(:nth-child(2), :nth-child(3)) td:is(:nth-child(2), :nth-child(3)) {
+  background-color: #c4c2c2;
+  border-width: 8px;
+  border-style: inset;
+  border-color: #DCDCDC;
+}
+
+.viewer table tr:first-child th:not(:first-child),
+.viewer table tr:not(:first-child) td:first-child {
+  /* fælles styling her, fx: */
+  background-color: #c2c2c2;
+}
+
+.viewer table tr:first-child th:first-child {
+  font-weight: bold;
+  border-width: 8px;
+  border-style: outset;
+  border-color: #DCDCDC;
+  background-color: #b4b4b4
+}
+
+.image-link {
+  color: #007afb;
+  text-decoration: underline;
+  cursor: pointer;
+  position: relative;
+}
+
+.image-preview {
+  display: none;
+  position: absolute;
+  background: white;
+  border: 2px solid #ddd; 
+  border-radius: 4px;
+  padding: 5px;
+  z-index: 1000;
+  width: 150px;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.image-link:hover .image-preview {
+  display: block;
+}
+
+.image-preview img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
