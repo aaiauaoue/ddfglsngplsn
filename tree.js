@@ -54,6 +54,66 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
       viewer.innerHTML = content;
+
+      // håndter billedelinks
+        var imageLinks = viewer.querySelectorAll(".image-link");
+        imageLinks.forEach(function(link) {
+          var href = link.getAttribute("href");
+          
+          // opret preview-element
+          var preview = document.createElement("div");
+          preview.className = "image-preview";
+          preview.innerHTML = "<img src='" + href + "' alt='preview'>";
+          link.appendChild(preview);
+          
+          // åbn billedet i nyt vindue ved klik
+          link.addEventListener("click", function(e) {
+            e.preventDefault();
+            window.open(href, "_blank");
+          });
+        });
+
+           // gør "+" og "-" klikbare, så man kan skifte frem og tilbage mellem de to tabeller
+      if (this.dataset.content2) {
+        var table1Html = formattedText;
+        var table2Html = this.dataset.content2.replace(/\\n/g, "<br>");
+
+        var showTable2 = function() {
+          var table = viewer.querySelector("table");
+          if (table) {
+            table.outerHTML = table2Html;
+          }
+                    var minusBtn = viewer.querySelector(".collapse-minus");
+          if (minusBtn) {
+            minusBtn.addEventListener("click", function(e) {
+              e.stopPropagation();
+              showTable1();
+            });
+          }
+        };
+
+        var showTable1 = function() {
+          var table = viewer.querySelector("table");
+          if (table) {
+            table.outerHTML = table1Html;
+          }
+          var plusBtn = viewer.querySelector(".expand-plus");
+          if (plusBtn) {
+            plusBtn.addEventListener("click", function(e) {
+              e.stopPropagation();
+              showTable2();
+            });
+          }
+        };
+
+        var expandBtn = viewer.querySelector(".expand-plus");
+        if (expandBtn) {
+          expandBtn.addEventListener("click", function(e) {
+            e.stopPropagation();
+            showTable2();
+          });
+        }
+      }
     });
   }
 });
